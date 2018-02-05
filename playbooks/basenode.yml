@@ -1,0 +1,91 @@
+#!/usr/bin/env ansible-playbook
+# Create basenodes
+
+---
+
+- hosts: all
+  name: basenodes - install base 
+  tasks:
+    - name: basenodes - base - ntp
+      yum:
+        name: ntp
+        state: present
+    - name: basenodes - base - dhcp
+      yum:
+        name: dhcp
+        state: present
+    - name: basenodes - base - openssh-server
+      yum:
+        name: openssh-server
+        state: present
+    - name: basenodes - base - logrotate
+      yum:
+        name: logrotate 
+        state: present
+    - name: basenodes - base - vim
+      yum:
+        name: vim
+        state: present
+    - name: basenodes - base - fail2ban
+      yum:
+        name: fail2ban
+        state: present
+
+- hosts: all
+  name: basenodes - install tools 
+  tasks:
+    - name: basenodes - tools - tree
+      yum:
+        name: tree
+        state: present
+    - name: basenodes - tools - ack
+      yum:
+        name: ack
+        state: present
+    - name: basenodes - tools - htop
+      yum:
+        name: htop
+        state: present
+    - name: basenodes - tools - tmux
+      yum:
+        name: tmux
+        state: present
+    - name: basenodes - tools - tcpdump
+      yum:
+        name: tcpdump
+        state: present
+    - name: basenodes - tools - netstat
+      yum:
+        name: net-tools
+        state: present
+
+- hosts: all
+  name: basenodes - install extra
+  tasks:
+    - name: basenodes - extra - sysdig gpg key
+      rpm_key:
+        key: https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public
+        state: present
+
+    - name: basenodes - extra - sysdig repo
+      get_url:
+        url: https://s3.amazonaws.com/download.draios.com/stable/rpm/draios.repo
+        dest: /etc/yum.repos.d/draios.repo
+
+    - name: basenodes - extra - kernel-headers for sysdig 
+      yum:
+        name: 'kernel-devel'
+        state: present
+
+    - name: basenodes - extra - sysdig 
+      yum:
+        name: sysdig
+        state: present
+
+- hosts: all
+  name: basenodes - install base 
+  roles:
+    - zsh
+    - users
+ 
+# vim: set sw=2 ts=2 sts=2 et nowrap ai:

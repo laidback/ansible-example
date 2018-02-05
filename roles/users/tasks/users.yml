@@ -1,0 +1,6 @@
+---
+
+- name: users - create users
+  debug:
+    msg: "{{ lookup }}: {{ hostvars[inventory_hostname][lookup] }}"
+

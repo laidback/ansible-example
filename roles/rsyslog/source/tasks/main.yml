@@ -1,0 +1,6 @@
+# Create a rsyslog source
+# Depends on rsyslog/common for rsyslog installation
+---
+- name: Configure rsyslog source
+  debug: 
+    msg: "configure rsyslog source"

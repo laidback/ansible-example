@@ -1,0 +1,9 @@
+---
+ansible_nodes_users:
+  - name: mira_bella
+    from: group_vars/ansible/nodes
+
+  - name: humpty_dumpty
+    from: group_vars/ansible/nodes
+
+# vim: ft=yaml sw=2 ts=2 sts=2 et nowrap ai:

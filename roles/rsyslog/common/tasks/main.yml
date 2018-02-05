@@ -1,0 +1,9 @@
+# rsyslog install
+- name: Install rsyslog from common
+  yum:
+    name: "rsyslog"
+    state: present
+
+- name: Debug rsyslog from hostvars with lookup
+  debug:
+    msg: "{{ lookup }}: {{ hostvars[inventory_hostname][lookup] }}"

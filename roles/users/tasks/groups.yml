@@ -1,0 +1,5 @@
+---
+
+- name: users - create groups
+  debug:
+    msg: "{{ lookup }}: {{ hostvars[inventory_hostname][lookup] }}"

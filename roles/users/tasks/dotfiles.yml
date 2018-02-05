@@ -1,0 +1,6 @@
+---
+
+- name: users - configure dotfiles
+  debug:
+    msg: 'configure dotfiles'
+

@@ -1,0 +1,7 @@
+#!/usr/bin/env ansible-playbook
+# Create site
+---
+- import_playbook: basenode.yml
+- import_playbook: ansible.yml
+- import_playbook: rsyslog.yml
+

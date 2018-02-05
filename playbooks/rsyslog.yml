@@ -1,0 +1,15 @@
+#!/usr/bin/env ansible-playbook
+
+---
+
+- hosts: rsyslog/flows
+  roles:
+  - rsyslog/flow
+
+- hosts: rsyslog/sinks
+  roles:
+  - rsyslog/sink
+
+- hosts: rsyslog/sources
+  roles:
+  - rsyslog/source

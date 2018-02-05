@@ -1,0 +1,6 @@
+---
+ansible_users:
+  - name: ansible
+    from: group_vars/ansible/common
+
+# vim: ft=yaml sw=2 ts=2 sts=2 et nowrap ai:

@@ -1,0 +1,6 @@
+---
+
+- name: ansible/master - configure master
+  debug: 
+    msg: "configure ansible master"
+

@@ -1,0 +1,6 @@
+---
+
+- name: ansible/common - install ansible 
+  debug:
+    msg: "Installing ansible"
+    

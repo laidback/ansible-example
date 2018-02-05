@@ -1,0 +1,9 @@
+---
+users:
+  - name: donald_duck
+    from: group_vars/all/users
+
+  - name: daisy_duck
+    from: group_vars/all/users
+
+# vim: ft=yaml sw=2 ts=2 sts=2 et nowrap ai:

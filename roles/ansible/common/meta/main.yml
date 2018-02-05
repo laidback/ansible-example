@@ -1,0 +1,4 @@
+---
+dependencies:
+  - role: users
+    lookup: ansible_users

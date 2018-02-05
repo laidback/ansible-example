@@ -1,0 +1,31 @@
+# ansible/common
+[ansible/common]
+host1
+host2
+
+# ansible/master
+[ansible/masters]
+host3
+
+# ansible/nodes
+[ansible/nodes]
+host1
+host2
+
+# rsyslog/common
+[rsyslog/common]
+host3
+
+# rsyslog/sources
+[rsyslog/sources]
+host1
+host2
+
+# rsyslog/flows
+[rsyslog/flows]
+host4
+
+# rsyslog/sinks
+[rsyslog/sinks]
+host1
+

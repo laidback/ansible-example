@@ -1,0 +1,5 @@
+---
+
+- name: ansible/node - configure node
+  debug: 
+    msg: "configure ansible node"
