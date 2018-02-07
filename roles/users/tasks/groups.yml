@@ -1,5 +1,17 @@
 ---
 
-- name: users - create groups
-  debug:
-    msg: "{{ lookup }}: {{ hostvars[inventory_hostname][lookup] }}"
+# Setup task local variables blended with the default datamodel
+- name: group - blend group
+  set_fact:
+    group: '{{ default_group | combine(item) }}'
+  with_items: '{{ hostvars[inventory_hostname][lookup]["groups"] }}'
+  register: blended_groups
+
+- name: group - create group
+  group:
+    name: '{{ item.name }}'
+    system: '{{ item.system }}'
+  with_items: '{{ blended_groups.results | map(attribute="ansible_facts.group") | list }}'
+  when: blended_groups.results
+
+# vim: set sw=2 ts=2 sts=2 et ai nowrap:

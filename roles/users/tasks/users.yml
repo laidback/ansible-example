@@ -1,6 +1,36 @@
 ---
 
-- name: users - create users
-  debug:
-    msg: "{{ lookup }}: {{ hostvars[inventory_hostname][lookup] }}"
+# Setup task local variables blended with the default datamodel
+- name: users - blend users
+  set_fact:
+    user: '{{ default_user | combine(item) }}'
+  with_items: '{{ hostvars[inventory_hostname][lookup]["users"] }}'
+  register: blended_users
 
+- name: users - create users
+  user:
+    name: '{{ item.name }}'
+#    uid: '{{ item.uid }}'
+    comment: '{{ item.comment }}'
+    password: '{{ item.password }}'
+    update_password: 'always'
+    group: '{{ item.group }}'
+    groups: '{{ item.groups }}'
+    append: '{{ item.append}}'
+    shell: '{{ item.shell }}'
+    home: '{{ item.home if item.home else "/home/%s" % item.name }}'
+    createhome: '{{ item.createhome }}'
+    move_home: '{{ item.move_home }}'
+    system: '{{ item.system }}'
+    non_unique: '{{ item.non_unique }}'
+    expires: '{{ item.expires }}'
+    generate_ssh_key: '{{ item.generate_ssh_key }}'
+    ssh_key_bits: '{{ item.ssh_key_bits }}'
+    ssh_key_comment: '{{ item.ssh_key_comment }}'
+    ssh_key_file: '{{ item.ssh_key_file }}'
+    ssh_key_passphrase: '{{ item.ssh_key_passphrase }}'
+    ssh_key_type: '{{ item.ssh_key_type }}'
+  with_items: '{{ blended_users.results | map(attribute="ansible_facts.user") | list }}'
+  when: blended_users.results
+
+# vim: set sw=2 ts=2 sts=2 et ai nowrap:

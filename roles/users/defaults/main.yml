@@ -1,2 +1,52 @@
 ---
 lookup: users
+
+# default_user
+# this is the blueprint which will be always merged with the user provided 
+# user variables to create a complete default user for the role.
+# This makes the role more resilient to user configuration errors and provides
+# us with more fine grained control of user attributes.
+default_user:
+  state: present
+  name: ''
+#  uid: 0
+  comment: ''
+  password: 'default_passwd'
+  update_password: always
+  group: None
+  groups: ''
+  append: no
+  shell: /bin/zsh
+# created by default as /home/username
+  home:
+  createhome: yes
+  move_home: no
+  system: no
+  non_unique: no
+  expires: 0
+  generate_ssh_key: no
+  ssh_key_bits: 4096
+  ssh_key_comment: ''
+  ssh_key_file: '.ssh/id_rsa'
+  ssh_key_passphrase: ''
+  ssh_key_type: 'rsa'
+#  force: no
+#  remove: no
+#  local: False
+#  seuser:
+#  skeleton:
+# only for BSD
+#  login_class: 
+
+# default group
+# this is the blueprint which will be always merged with the user provided 
+# group variables to create a complete datamodel for the role.
+# This makes the role more resilient to user configuration errors and provides
+# us with more fine grained control of datamodel attributes.
+default_group:
+  state: present
+  name: 
+  gid: None
+  system: no
+
+# vim: set sw=2 ts=2 sts=2 et ai nowrap:
