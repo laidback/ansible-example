@@ -1,0 +1,63 @@
+---
+
+# https://github.com/openshift/openshift-ansible-contrib/tree/master/reference-architecture/aws-ansible 
+
+- name: 'crp-bastion - install rhel subscription manager'
+  yum:
+    name: 'subscription-manager'
+ 
+#- name: 'crp-bastion - enable rhel repos'
+#  shell: 'subscription-manager repos --enable {{ item }}'
+#  with_items:
+#    - rhel-7-server-extras-rpms
+#    - rhel-7-server-ose-3.6-rpms
+#    - rhel-7-fast-datapath-rpms
+
+#- name: 'crp-bastion - install rhel prerequisits'
+#  yum:
+#    name: '{{ item }}'
+#  with_items:
+#    - atomic-openshift-utils
+#    - ansible
+#    - openshift-ansible-playbooks
+
+#- name: 'crp-bastion - install fedora epel'
+#  apt_rpm:
+#    name: 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm'
+#
+#- name: 'crp-bastion - enable rhel server-optional'
+#  shell: 'subscription-manager repos --enable rhel-r-server-optional-rpms'
+ 
+- name: 'crp-bastion - install epel prerequisits'
+  yum:
+    name: '{{ item }}'
+  with_items:
+    - python2-boto
+    - pyOpenSSL
+    - git
+    - python-netaddr
+    - python-six
+    - python2-boto3
+    - python-click
+    - python-httplib2
+    - python-passlib
+    - httpd-tools
+    - java-1.8.0-openjdk-headless
+
+- name: 'crp-bastion - blockinfile /etc/environment'
+  blockinfile:
+    dest: '/etc/environment'
+    marker: '# {mark} ANSIBLE MANAGED BLOCK'
+    content: '{{ lookup("file", role_path + "/files/etc/environment_sbx") }}'
+
+- name: 'crp-bastion - install /etc/ssh/ssh_config'
+  template:
+    src: '{{ role_path + "/templates/etc/ssh/ssh_config.j2" }}'
+    dest: '/etc/ssh/ssh_config'
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+#    validate: '/usr/sbin/sshd -t -f %s'
+    backup: yes
+
+# vim: ft=yaml sw=2 ts=2 sts=2 et ai nowrap :

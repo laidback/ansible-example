@@ -1,0 +1,50 @@
+### Cluster options
+export CRP_STACK_NAME=openshift-infra
+export CRP_CONSOLE_PORT=443
+export CRP_DEPLOYMENT_TYPE=origin
+export CRP_OPENSHIFT_SDN=redhat/openshift-ovs-multitenant
+
+### AWS/EC2 options
+export CRP_REGION=eu-central-1
+export CRP_AMI=ami-fbc89880
+export CRP_MASTER_INSTANCE_TYPE=m4.xlarge
+export CRP_NODE_INSTANCE_TYPE=m4.xlarge
+export CRP_APP_INSTANCE_TYPE=t2.large
+export CRP_APP_NODE_COUNT=3
+export CRP_KEYPAIR=ec2_rsa
+export CRP_CREATE_KEY=no
+export CRP_KEY_PATH=/dev/null
+export CRP_CREATE_VPC=yes
+export CRP_VPC_ID=vpc123
+export CRP_PRIVATE_SUBNET_ID1=vpc_prv_subnet_1
+export CRP_PRIVATE_SUBNET_ID2=vpc_prv_subnet_2
+export CRP_PRIVATE_SUBNET_ID3=vpc_prv_subnet_2
+export CRP_PUBLIC_SUBNET_ID1=vpc_pub_subnet_1
+export CRP_PUBLIC_SUBNET_ID2=vpc_pub_subnet_2
+export CRP_PUBLIC_SUBNET_ID3=vpc_pub_subnet_3
+
+### DNS options
+export CRP_PUBLIC_HOSTED_ZONE=super.internal
+export CRP_APP_DNS_PREFIX=apps
+
+### Subscription and Software options
+export CRP_RHSM_USER=lukas.ciszewski
+export CRP_RHSM_PASSWORD=password
+export CRP_RHSM_POOL=superpool
+
+### Miscellaneous options
+export CRP_BYO_BASTION=no
+export CRP_BASTION_SG=/dev/null
+export CRP_CONTAINERIZED=False
+export CRP_S3_BUCKET_NAME=superbucket
+export CRP_GITHUB_CLIENT_ID=1234
+export CRP_GITHUB_CLIENT_SECRET=4321
+export CRP_GITHUB_ORGANIZATION=laidback.github.io
+export CRP_S3_USERNAME=lukas
+export CRP_OPENSHIFT_METRICS_DEPLOY=true
+export CRP_OPENSHIFT_LOGGING_DEPLOY=true
+export CRP_OPENSHIFT_METRICS_STORAGE_VOLUME_SIZE=20Gi
+export CRP_OPENSHIFT_LOGGING_STORAGE_VOLUME_SIZE=100Gi
+export CRP_NO_CONFIRM=False
+export CRP_VERBOSE=1
+
