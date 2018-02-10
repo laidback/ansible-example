@@ -1,0 +1,49 @@
+---
+
+# Installation:
+#
+# 1.   vim /etc/ssh/sshd_config 
+#      PrintMotd no
+#
+# 2.   vim /etc/pam.d/login
+#      # session optional pam_motd.so
+#
+# 3.   vim /etc/profile
+#      /usr/local/bin/dynmotd # Place at the bottom
+#
+# 4.   Then of course drop this file at
+#      /usr/local/bin/dynmotd
+
+- name: 'motd - install figlet'
+  yum:
+    pkg: figlet
+
+- name: 'motd - create hostname ascii art'
+  shell: 'figlet < /etc/hostname >/etc/motd'
+
+
+- name: 'motd - add motd in /etc/ssh/sshd_config'
+  lineinfile:
+    path: '/etc/ssh/sshd_config'
+    regexp: '%PrintMotd*'
+    line: 'PrintMotd no'
+
+- name: 'motd - add motd in /pam.d/login'
+  lineinfile:
+    path: '/etc/pam.d/login'
+    line: 'session optional pam_motd.so'
+
+- name: 'motd - copy /usr/local/bin/dynmotd'
+  copy:
+    src:  '{{ role_path }}/files/usr/local/bin/dynmotd'
+    dest: '/usr/local/bin/dynmotd'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: 'motd - add dynmotd call to /etc/profile'
+  lineinfile:
+    path: '/etc/profile'
+    insertafter: 'EOF'
+    line: '/usr/local/bin/dynmotd'
+
