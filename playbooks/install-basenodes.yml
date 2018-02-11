@@ -1,0 +1,14 @@
+#!/usr/bin/env ansible-playbook
+# Create basenodes
+
+---
+
+- hosts: all
+  name: basenodes - install base packages
+  roles:
+    - { role: packages, tags: packages}
+    - { role: sysdig, tags: sysdig}
+    - { role: users, tags: users}
+    - { role: motd, tags: motd }
+
+# vim: set sw=2 ts=2 sts=2 et nowrap ai:

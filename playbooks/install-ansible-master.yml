@@ -6,6 +6,3 @@
   roles:
     - ansible/master
 
-- hosts: ansible/nodes
-  roles:
-    - ansible/node

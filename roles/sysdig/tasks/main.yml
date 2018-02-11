@@ -1,0 +1,23 @@
+---
+# tasks file for sysdig
+
+- name: 'sysdig - get gpg key' 
+  rpm_key:
+    key: 'https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public'
+    state: 'present'
+
+- name: 'sysdig - setup yum repo'
+  get_url:
+    url: 'https://s3.amazonaws.com/download.draios.com/stable/rpm/draios.repo'
+    dest: '/etc/yum.repos.d/draios.repo'
+
+- name: 'sysdig - install kernel headers'
+  yum:                                                                         
+    name: 'kernel-devel'
+    state: 'present'
+
+- name: 'sysdig - install sysdig'
+  yum:
+    name: 'sysdig'
+    state: 'present'
+

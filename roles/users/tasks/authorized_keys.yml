@@ -5,8 +5,8 @@
 - name: 'Set authorized key validating the TLS/SSL certificates'
   authorized_key:
     user: '{{ item.name }}'
-    state: present
-    key: '{{ global.github }}/{{ item.gh_name }}.keys'
+    state: 'present'
+    key: '{{ authorized_keys.github }}/{{ item.gh_name }}.keys'
     validate_certs: True
   with_items: '{{ hostvars[inventory_hostname][lookup]["gh_auth_keys"] }}'
 

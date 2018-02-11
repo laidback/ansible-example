@@ -1,0 +1,7 @@
+#!/usr/bin/env ansible-playbook
+
+---
+
+- hosts: rsyslog/sources
+  roles:
+  - rsyslog/source

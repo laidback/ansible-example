@@ -1,0 +1,9 @@
+---
+# tasks file for packages
+
+- name: 'packages - install packages'
+  yum:
+    name: '{{ item.name }}'
+    state: '{{ item.state | default("present") }}'
+  with_items: '{{ hostvars[inventory_hostname][lookup] }}'
+

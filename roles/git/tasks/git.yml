@@ -1,6 +1,0 @@
----
-
-- name: git - install git
-  yum:
-    name: "git"
-    state: latest

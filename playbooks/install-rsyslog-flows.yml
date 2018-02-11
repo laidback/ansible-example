@@ -2,6 +2,7 @@
 
 ---
 
-- hosts: all
+- hosts: rsyslog/flows
   roles:
-    - zsh
+  - rsyslog/flow
+

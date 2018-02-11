@@ -1,7 +1,9 @@
 #!/usr/bin/env ansible-playbook
-# Create site
 ---
-- import_playbook: basenode.yml
-- import_playbook: ansible.yml
-- import_playbook: rsyslog.yml
+- import_playbook: install-basenodes.yml
+- import_playbook: install-ansible-master.yml
+- import_playbook: install-ansible-nodes.yml
+- import_playbook: install-rsyslog-sinks.yml
+- import_playbook: install-rsyslog-flows.yml
+- import_playbook: install-rsyslog-sources.yml
 

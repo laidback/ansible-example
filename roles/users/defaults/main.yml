@@ -1,5 +1,8 @@
 ---
-lookup: users
+lookup: 'users'
+
+authorized_keys:
+  github: 'https://github.com'
 
 # default_user
 # this is the blueprint which will be always merged with the user provided 
