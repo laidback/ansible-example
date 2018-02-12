@@ -4,4 +4,4 @@
 
 - hosts: localhost
   roles:
-    - users
+    - sudoers
