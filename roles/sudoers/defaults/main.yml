@@ -1,0 +1,6 @@
+---
+lookup: 'sudoers'
+
+sudoers:
+  group: 'sudoers'
+  users: []

@@ -1,0 +1,36 @@
+---
+
+# Set the roles defaults to hostvars if hostvars does not provide variables
+- name: 'sudoers - set lookup if not defined'
+  set_fact: 
+    '{{ lookup }}': '{{ sudoers}}'
+  when: 'hostvars[inventory_hostname][lookup] is undefined'
+
+- name: 'sudoers - install sudo'
+  yum:
+    name: 'sudo'
+    state: 'present'
+
+- name: 'sudoers - enable sudoers.d include in /etc/sudoers'
+  lineinfile:
+    path: '/etc/sudoers'
+    line: '#includedir /etc/sudoers.d'
+
+- name: 'sudoers - add sudoers.d file'
+  template:
+    src: '{{ role_path }}/templates/etc/sudoers.d/sudoers'
+    dest: '/etc/sudoers.d/ansible_sudoers'
+    validate: '/usr/sbin/visudo -cf %s'
+
+- name: 'sudoers - create sudoers group'
+  group:
+    name: '{{ hostvars[inventory_hostname][lookup].group or sudoers.group }}'
+
+- name: 'Adding existing user to sudo group'
+  user: 
+    name: '{{ item }}'
+    groups: '{{ hostvars[inventory_hostname][lookup].group | default(sudoers.group) }}'
+    append: yes
+  with_items: '{{ hostvars[inventory_hostname][lookup]["users"] | default([]) }}'
+
+# vim: set sw=2 ts=2 sts=2 et ai nowrap:

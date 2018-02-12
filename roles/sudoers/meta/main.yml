@@ -1,0 +1,14 @@
+galaxy_info:
+  author: Lukas Ciszewski
+  description: Sudoers role
+  company: Allianz Deutschland AG
+  license: MIT
+
+  min_ansible_version: 2.4
+
+  github_branch: master
+
+  platforms:
+  - name: CentOS
+    version: 7
+

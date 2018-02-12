@@ -1,0 +1,1 @@
+%{{ hostvars[inventory_hostname][lookup]["group"] }} ALL=(ALL:ALL) NOPASSWD:ALL

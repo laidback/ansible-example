@@ -1,0 +1,4 @@
+---
+# tasks file for sudoers
+
+- include_tasks: 'sudoers.yml'
