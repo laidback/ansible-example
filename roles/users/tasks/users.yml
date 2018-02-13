@@ -1,10 +1,11 @@
 ---
 
 # Setup task local variables blended with the default datamodel
+
 - name: users - blend users
   set_fact:
     user: '{{ default_user | combine(item) }}'
-  with_items: '{{ hostvars[inventory_hostname][lookup]["users"] }}'
+  with_items: '{{ hostvars[inventory_hostname] | json_query(lookup + ".users") }}'
   register: blended_users
 
 - name: users - create users

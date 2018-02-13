@@ -2,7 +2,7 @@
 
 ---
 
-- hosts: rsyslog/flows
+- hosts: rsyslog-flows
   roles:
   - rsyslog/flow
 

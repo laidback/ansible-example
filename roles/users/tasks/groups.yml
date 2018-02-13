@@ -1,10 +1,11 @@
 ---
 
 # Setup task local variables blended with the default datamodel
+
 - name: group - blend group
   set_fact:
     group: '{{ default_group | combine(item) }}'
-  with_items: '{{ hostvars[inventory_hostname][lookup]["groups"] }}'
+  with_items: '{{ hostvars[inventory_hostname] | json_query(lookup + ".groups") }}'
   register: blended_groups
 
 - name: group - create group

@@ -2,7 +2,7 @@
 
 ---
 
-- hosts: rsyslog/sinks
+- hosts: rsyslog-sinks
   roles:
   - rsyslog/sink
 

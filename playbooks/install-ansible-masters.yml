@@ -2,7 +2,7 @@
 
 ---
 
-- hosts: ansible/masters
+- hosts: ansible-masters
   roles:
     - ansible/master
 

@@ -4,4 +4,9 @@
 
 - hosts: localhost
   roles:
-    - sudoers
+    - { role: packages, tags: packages, lookup: install-basenodes['packages'] }
+    - { role: sysdig, tags: sysdig, lookup: install-basenodes.sysdig }
+    - { role: users, tags: users, lookup: install-basenodes.users }
+    - { role: motd, tags: motd, lookup: install-basenodes.motd }
+
+# vim: set sw=2 ts=2 sts=2 et nowrap ai:

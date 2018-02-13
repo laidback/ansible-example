@@ -1,7 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
 - import_playbook: install-basenodes.yml
-- import_playbook: install-ansible-master.yml
+- import_playbook: install-ansible-masters.yml
 - import_playbook: install-ansible-nodes.yml
 - import_playbook: install-rsyslog-sinks.yml
 - import_playbook: install-rsyslog-flows.yml

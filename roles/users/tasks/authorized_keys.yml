@@ -8,6 +8,6 @@
     state: 'present'
     key: '{{ authorized_keys.github }}/{{ item.gh_name }}.keys'
     validate_certs: True
-  with_items: '{{ hostvars[inventory_hostname][lookup]["gh_auth_keys"] }}'
+  with_items: '{{ hostvars[inventory_hostname] | json_query(lookup + ".gh_auth_keys") }}'
 
 # vim: set sw=2 ts=2 sts=2 et ai nowrap:

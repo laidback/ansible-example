@@ -5,5 +5,5 @@
   yum:
     name: '{{ item.name }}'
     state: '{{ item.state | default("present") }}'
-  with_items: '{{ hostvars[inventory_hostname][lookup] }}'
+  with_items: '{{ hostvars[inventory_hostname] | json_query(lookup) }}'
 
