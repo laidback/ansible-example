@@ -2,6 +2,9 @@
 
 # Setup task local variables blended with the default datamodel
 
+- debug:
+    var: lookup
+
 - name: group - blend group
   set_fact:
     group: '{{ default_group | combine(item) }}'

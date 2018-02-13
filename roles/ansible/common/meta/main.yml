@@ -1,4 +1,4 @@
 ---
 dependencies:
   - role: users
-    lookup: ansible_users
+#    lookup: ansible_common.users

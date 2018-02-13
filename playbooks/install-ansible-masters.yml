@@ -4,5 +4,5 @@
 
 - hosts: ansible-masters
   roles:
-    - ansible/master
+    - {role: ansible/master, tags: master, lookup: install_ansible_masters.users } 
 
