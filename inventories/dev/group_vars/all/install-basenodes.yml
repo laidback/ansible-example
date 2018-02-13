@@ -1,1 +1,25 @@
+---
+install-basenode:
+  
+  packages:
+    packages_stuff: yes
+  
+  sysdig:
+    sysdig_stuff: 'used by install-basenodes playbook targeting all hosts'
+  
+  users:
+    groups:
+      - name: 'laidback'
 
+    users:
+      - name: 'laidback'
+        group: 'laidback'
+        append: true
+        comment: 'laidback user'
+        update_password: 'yes'
+
+    gh_auth_keys:
+      - name: 'laidback'
+        gh_name: 'laidback'
+  
+# vim: ft=yaml sw=2 ts=2 sts=2 et nowrap ai:
