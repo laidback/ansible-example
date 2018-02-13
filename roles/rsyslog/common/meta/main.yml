@@ -1,4 +1,4 @@
 ---
 dependencies:
   - role: users
-    lookup: rsyslog_users
+    lookup: rsyslog.users
